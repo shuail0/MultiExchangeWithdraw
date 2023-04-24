@@ -1,0 +1,3 @@
+wallet_address,tag,currency,amount,chain,exchange_name
+0xfF22b2606592B874349bC088E46a7F3423826038,,ETH,0.01,ETH-ERC20,okx
+0xfF22b2606592B874349bC088E46a7F3423826038,,USDT,10,BSC,binance
