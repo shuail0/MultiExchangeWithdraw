@@ -4,6 +4,7 @@
 author: shuai
 twitter: @ShuaiL0
 """
+import random
 import time
 import pandas as pd
 from exchange_utils import *
@@ -16,11 +17,12 @@ if __name__ == "__main__":
 
     # 打开地址文件
     address_file_path = '../data/deposit_address.csv'  # 提币地址文件路径
-    sleep_time = 30  # 设置提币间隔(秒)
+
 
     address_data = pd.read_csv(address_file_path)
 
     for index, row in address_data.iterrows():
+        sleep_time = random.randint(180, 530)  # 设置提币间隔(秒)
         # 提现操作的相关参数
         wallet_address = row['wallet_address']
         tag = row['tag']
