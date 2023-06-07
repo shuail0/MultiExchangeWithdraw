@@ -22,7 +22,7 @@ if __name__ == "__main__":
     address_data = pd.read_csv(address_file_path)
 
     for index, row in address_data.iterrows():
-        sleep_time = random.randint(180, 530)  # 设置提币间隔(秒)
+        sleep_time = random.randint(180, 1200)  # 设置提币间隔(秒)
         # 提现操作的相关参数
         wallet_address = row['wallet_address']
         tag = row['tag']
