@@ -7,5 +7,10 @@
     "api_key": "your_okx_api_key_here",
     "api_secret": "your_okx_api_secret_here",
     "password": "your_api_password"
+  },
+  "bitget": {
+    "api_key": "your_okx_api_key_here",
+    "api_secret": "your_okx_api_secret_here",
+    "password": "your_api_password"
   }
 }
