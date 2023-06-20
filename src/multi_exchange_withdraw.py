@@ -10,6 +10,7 @@ import pandas as pd
 from exchange_utils import *
 from exchange.okx.okx_withdraw import okx_withdraw
 from exchange.binance.binance_withdraw import binance_withdraw
+from exchange.bitget.bitget_withdraw import bitget_withdraw
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
 
@@ -28,7 +29,7 @@ if __name__ == "__main__":
         tag = row['tag']
         if pd.isna(tag):
             tag = None
-        currency = row['currency']
+        currency = row['currency'].upper()
         amount = row['amount']
         chain = row['chain']
         exchange_name = row['exchange_name']
@@ -42,6 +43,8 @@ if __name__ == "__main__":
         # 其他交易所的提币操作将在此处添加
         elif exchange_name.lower() == 'binance':
             binance_withdraw(exchange, wallet_address, tag, currency, amount, chain)
+        elif exchange_name.lower() == 'bitget':
+            bitget_withdraw(exchange, wallet_address, tag, currency, amount, chain)
         else:
             print('提现失败，不支持的交易所')
 

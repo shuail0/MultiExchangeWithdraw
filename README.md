@@ -1,8 +1,7 @@
 # 序
 
-最近在扩充钱包地址刷交互，为了做好资金隔离所有的资金都需要从交易所提币至钱包。手动提币时每次都要接2-3个验证码，觉得有点繁琐，就写了个提币的脚本。
+这是一个交易所批量向钱包提币的程序， 目前支持okx和binance这两个交易所，后续可能会在增加新的交易所。
 
-目前支持okx和binance这两个交易所，后续可能会在增加新的交易所。
 
 
 
@@ -46,3 +45,36 @@
 - 配置完成后直接运行`multi_exchange_withdraw.py`文件即可。
 - `sleep_time`是设置两次提币的间隔，如果是binance提币，建议这个值30以上（binance提币消耗600权重，binance每个账户每分钟最多1200权重）。
 
+
+# 交易所设置
+
+## 币安
+无需设置，直接提币
+## OKX地址配置（将地址添加至地址簿）
+操作步骤：
+1. 打开资金帐户点击提币：
+![image-20230422225003791](https://s2.loli.net/2023/06/20/bU5u3KwkEIgRYpH.png)
+
+2. 选择相应的币种：
+![image-20230422225031380](https://s2.loli.net/2023/06/20/8MwEZ5QVRIgieSA.png)
+
+3. 点击地址旁边的这个按钮进入地址簿：
+![image-20230422225121515](https://s2.loli.net/2023/06/20/pMxCLl1czIyKfoW.png)
+4. 点击新增提现地址：
+![image-20230422225203275](https://s2.loli.net/2023/06/20/ZWGTukvLXHhJUl1.png)
+5. 输入地址添加，可以把“保存为通用地址钩上，这样下次提同网络的其它币种就不需要再次添加地址了。
+![image-20230422225334525](https://s2.loli.net/2023/06/20/g9lNHbtFQ32IXeB.png)
+6. OKX若是地址较多，可以点击继续添加地址填入更多地址，OKX一次最多可添加20个地址。
+
+## BitGet
+### 将地址添加至地址簿
+1. 打开提币地址管理页面：https://www.bitget.site/zh-CN/asset/address
+2. 选择添加提币地址（单个添加1个地址）或 批量添加（一次添加多个地址，最多50个）。
+3.  ETH、BSC、MATIC、ARBITRUMONE、OPTIMISM等EVM兼容链推荐直接添加EVM地址，后续提这些链的币是不需要再添加。
+###  提币链chain参数获取
+BitGet提币链的配置与网站提币页面展示的数据有些不同，这个参数最好是从特定的网站获取，否则可能回导致提币失败。具体的获取步骤如下：
+1. 浏览器打开这个网站，获取提币信息：https://api.bitget.com/api/spot/v1/public/currencies
+2. 根据自己的币种和网络，查找对应的Chain参数，下图是BTC 提币至BSC链的信息：
+![image-20230620145757857](https://s2.loli.net/2023/06/20/WVjuknNvS31QRyC.png)
+3. 将这个参数填入至地址表格中：
+![image-20230620150017465](https://s2.loli.net/2023/06/20/PZ61zK5MUnD4jda.png)
