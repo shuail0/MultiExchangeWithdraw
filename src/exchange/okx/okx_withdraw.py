@@ -21,11 +21,17 @@ def okx_withdraw(exchange, wallet_address, tag=None, currency=None, amount=None,
    :param tag: str, optional, 提币地址标签（对于部分链可能需要）。默认为 None
    :return: None
    """
-    # 获取提现的网络
-    network = chain.split('-')[-1]
     # 获取所有币种列表
     currencies = exchange.fetchCurrencies()
-    withdrawal_fee = currencies[currency]['networks'][network]['fee']  # 获取提现手续费
+    # 获取提币费用数据
+    withdrawal_fee = None
+    for key, value in currencies[currency]['networks'].items():
+        if 'id' in value and value['info']['chain'] == chain:
+            withdrawal_fee = value['fee']
+            break
+    if not withdrawal_fee:
+        print('无法获取', chain, '网络的提币费用信息，程序退出')
+        exit()
 
     # 检查资金账户余额
     balance = pd.DataFrame(exchange.privateGetAssetBalances()['data'])  # 获取资金账户余额

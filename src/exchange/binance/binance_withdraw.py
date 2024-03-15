@@ -40,8 +40,6 @@ def binance_withdraw(exchange, wallet_address, tag=None, currency=None, amount=N
             params['addressTag'] = tag
         withdrawal = exchange.sapiPostCapitalWithdrawApply(params)
         print("提现结果：", withdrawal)
-        exit()
-
         # 检查提现状态
         time.sleep(5)  # 等待 5 秒以获取更新状态
         status = exchange.sapiGetCapitalWithdrawHistory(
