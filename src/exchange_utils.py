@@ -8,6 +8,12 @@ import json
 import ccxt
 import os
 
+# 获取当前代码文件所在的路径
+current_file_path = os.path.abspath(__file__)
+
+# 获取当前代码文件所在的目录路径
+current_directory = os.path.dirname(current_file_path)
+
 
 def load_api_keys(exchange_name: str) -> dict:
     """
@@ -15,7 +21,7 @@ def load_api_keys(exchange_name: str) -> dict:
     :param exchange_name: 交易所名称，如 'okx'、'binance' 等
     :return: 包含 API 密钥的字典
     """
-    file_path = 'api_keys.json'
+    file_path = os.path.join(current_directory, 'api_keys.json')
 
     with open(file_path, 'r') as f:
         api_keys = json.load(f)
@@ -48,7 +54,8 @@ def init_exchange(exchange_name: str, api_key: str, api_secret: str, password: s
         'enableRateLimit': enable_rate_limit,
         'timeout': 3000,
         'rateLimit': 10,
-        'enableRateLimit': False
+        'enableRateLimit': False,
+        # 'httpsProxy': 'http://127.0.0.1:7890'
     }
 
     if password:
