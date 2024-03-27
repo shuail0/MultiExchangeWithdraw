@@ -81,3 +81,22 @@ BitGet提币链的配置与网站提币页面展示的数据有些不同，这�
 ![image-20230620145757857](https://s2.loli.net/2023/06/20/WVjuknNvS31QRyC.png)
 3. 将这个参数填入至地址表格中：
 ![image-20230620150017465](https://s2.loli.net/2023/06/20/PZ61zK5MUnD4jda.png)
+
+
+
+
+
+## Gate
+
+### 创建API
+
+- 类型选择API v4 Key
+- 账户类型：交易账户
+- 权限：钱包和提现的读写权限
+- 绑定一个IP
+
+
+
+### 交易所设置
+
+- 将需要提币的地址添加到地址簿中，开启免验证：https://www.gate.io/zh/myaccount/withdraw_address
