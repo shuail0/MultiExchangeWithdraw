@@ -11,19 +11,19 @@ from exchange_utils import *
 from exchange.okx.okx_withdraw import okx_withdraw
 from exchange.binance.binance_withdraw import binance_withdraw
 from exchange.bitget.bitget_withdraw import bitget_withdraw
+from exchange.gate.gate_withdraw import gate_withdraw
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
 
 if __name__ == "__main__":
 
     # 打开地址文件
-    address_file_path = '../data/deposit_address.csv'  # 提币地址文件路径
-
+    address_file_path = '/Users/lishuai/Documents/xbx_kxj/MultiExchangeWithdraw/data/提币测试.csv'  # 提币地址文件路径
 
     address_data = pd.read_csv(address_file_path)
 
     for index, row in address_data.iterrows():
-        sleep_time = random.randint(180, 1200)  # 设置提币间隔(秒)
+        sleep_time = random.randint(100, 300)  # 设置提币间隔(秒)
         # 提现操作的相关参数
         wallet_address = row['wallet_address']
         tag = row['tag']
@@ -45,6 +45,8 @@ if __name__ == "__main__":
             binance_withdraw(exchange, wallet_address, tag, currency, amount, chain)
         elif exchange_name.lower() == 'bitget':
             bitget_withdraw(exchange, wallet_address, tag, currency, amount, chain)
+        elif exchange_name.lower() == 'gate':
+            gate_withdraw(exchange, wallet_address, tag, currency, amount, chain)
         else:
             print('提现失败，不支持的交易所')
 
